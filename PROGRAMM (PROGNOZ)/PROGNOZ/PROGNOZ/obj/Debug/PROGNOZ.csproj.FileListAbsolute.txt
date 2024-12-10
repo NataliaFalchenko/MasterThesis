@@ -1,0 +1,82 @@
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\bin\Debug\baseCollege.mdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe.config
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csprojAssemblyReference.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form1.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Properties.Resources.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.GenerateResource.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.CoreCompileInputs.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form2.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form3.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\bin\Debug\baseCollege.mdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe.config
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csprojAssemblyReference.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form1.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form2.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form3.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Properties.Resources.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.GenerateResource.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.CoreCompileInputs.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ)\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\bin\Debug\baseCollege.mdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe.config
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csprojAssemblyReference.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form1.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form2.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form3.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Properties.Resources.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.GenerateResource.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.CoreCompileInputs.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – копія\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form4.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\bin\Debug\baseCollege.mdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe.config
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csprojAssemblyReference.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form1.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form2.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form3.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form4.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Properties.Resources.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.GenerateResource.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.CoreCompileInputs.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 2\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\baseCollege.mdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe.config
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csprojAssemblyReference.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form1.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form2.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form3.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form4.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Properties.Resources.resources
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.GenerateResource.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.CoreCompileInputs.cache
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\baseCollege.mdb
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe.config
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\bin\Debug\PROGNOZ.pdb
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csprojAssemblyReference.cache
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form1.resources
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form2.resources
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form3.resources
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Form4.resources
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.Properties.Resources.resources
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.GenerateResource.cache
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.csproj.CoreCompileInputs.cache
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.exe
+D:\ЧДБК\!!! Магістратура\КВАЛІФІКАЦІЙНА РОБОТА ФІНАЛЬНА\PROGRAMM (PROGNOZ) – версія 3\PROGNOZ\PROGNOZ\obj\Debug\PROGNOZ.pdb

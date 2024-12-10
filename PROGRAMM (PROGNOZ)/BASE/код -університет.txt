@@ -1,0 +1,768 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace forecast_stud
+{
+    public partial class Form1 : Form
+    {
+        public int idf, idf2;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void uppCombo(ComboBox cb, String query, String dm)
+        {
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+
+            OleDbCommand comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+            comm1.CommandText = query;
+
+            OleDbDataAdapter adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            DataTable dt = new DataTable();
+            adapt1.Fill(dt);
+            cb.DataSource = dt;
+            cb.DisplayMember = dm;
+            cb.ValueMember = "id";
+
+            conn1.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.chart1.Series[0].Points.Clear();
+          
+            idf = Convert.ToInt32(this.comboBox1.SelectedValue);
+
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+            OleDbCommand comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+            if (this.checkBox1.Checked)
+            {
+                comm1.CommandText = @"select r2.namef as [Назва факультету], sum(r1.num) as [Кількість заяв], Round(avg(r1.avg_points), 0) as [Середній бал], Round(avg(r1.avg_pr), 0) as [Середній пріоритет]  from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r2.idu=? 
+                                    group by r1.id_f, r2.namef";
+                comm1.Parameters.AddWithValue("idu", this.comboBox4.SelectedValue);
+            }
+            else if (this.checkBox3.Checked){
+                comm1.CommandText = @"select r2.nameu, r1.full_sum as [Кількість заяв], [Середній бал], [Середній пріоритет] from (select r4.idu, sum(r3.num) as full_sum, Round(avg(avg_points), 0) as [Середній бал], Round(avg(avg_pr), 0) as [Середній пріоритет] from for_for as r3 inner join 
+                                    faculties as r4 on r3.id_f=r4.id group by r4.idu) as r1 inner join universe as r2 on r1.r4.idu=r2.id ";
+            }
+            else if (this.checkBox7.Checked)
+            {
+                comm1.CommandText = @"select r1.year_f as [Рік], sum(r1.num) as [Кількість заяв]  from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r2.idu=1 group by r1.year_f ";
+                comm1.Parameters.AddWithValue("idu", this.comboBox4.SelectedValue);
+            }
+            else
+            {
+
+                comm1.CommandText = "select r1.year_f as [Рік], r1.num as [Кількість заяв] from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r1.id_f=?";
+                    comm1.Parameters.AddWithValue("id_f", idf);
+            //    }
+             //   else
+           //     {
+               //     comm1.CommandText = "select year_f, sum(num) as full_sum from for_stat group by year_f";
+          //      }
+            }
+            OleDbDataAdapter adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            DataTable dt = new DataTable();
+            adapt1.Fill(dt);
+            this.dataGridView1.DataSource = dt;
+            conn1.Close();
+
+            chart1.Series[0].IsXValueIndexed = true;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                chart1.Series[0].Points.AddXY(dt.Rows[i][0], dt.Rows[i][1]);
+            }
+
+            if (this.checkBox1.Checked)
+            chart1.Series[0].Sort(System.Windows.Forms.DataVisualization.Charting.PointSortOrder.Descending, "Y");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.comboBox1.Enabled = false;
+            this.comboBox9.Enabled = false;
+            this.comboBox2.Enabled = false;
+            this.dataGridView3.RowCount = 8;
+            this.dataGridView3.ColumnCount = 4;
+            this.dataGridView3.Rows[0].Cells[0].Value = "2010";
+            this.dataGridView3.Rows[1].Cells[0].Value = "2011";
+            this.dataGridView3.Rows[2].Cells[0].Value = "2012";
+            this.dataGridView3.Rows[3].Cells[0].Value = "2013";
+            this.dataGridView3.Rows[4].Cells[0].Value = "2014";
+            this.dataGridView3.Rows[5].Cells[0].Value = "2015";
+            this.dataGridView3.Rows[6].Cells[0].Value = "2016";
+            this.dataGridView3.Rows[7].Cells[0].Value = "2017";
+            this.dataGridView3.Columns[0].HeaderText = "Рік";
+            this.dataGridView3.Columns[1].HeaderText = "Кількість заяв";
+            this.dataGridView3.Columns[2].HeaderText = "Середній бал";
+            this.dataGridView3.Columns[3].HeaderText = "Середній пріоритет";
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+
+            OleDbCommand comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+            comm1.CommandText = "select id, nameu as [Назва ВНЗ], city as [Місто] from universe";
+            OleDbDataAdapter adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            DataTable dt = new DataTable();
+            adapt1.Fill(dt);
+            this.dataGridView1.DataSource = dt;
+            this.dataGridView2.DataSource = dt;
+
+            comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+            comm1.CommandText = "select * from universe";
+            adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            dt = new DataTable();
+            adapt1.Fill(dt);
+            this.comboBox4.DataSource = dt;
+            this.comboBox4.ValueMember = "id";
+            this.comboBox4.DisplayMember = "nameu";
+            this.comboBox8.DataSource = dt;
+            this.comboBox8.ValueMember = "id";
+            this.comboBox8.DisplayMember = "nameu";
+            this.comboBox10.DataSource = dt;
+            this.comboBox10.ValueMember = "id";
+            this.comboBox10.DisplayMember = "nameu";
+            
+
+            idf = Convert.ToInt32(this.comboBox1.SelectedValue);
+            idf2 = Convert.ToInt32(this.comboBox2.SelectedValue);
+
+            conn1.Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            if (Int32.TryParse(this.comboBox1.SelectedValue.ToString(),out idf))
+            {
+                idf = Convert.ToInt32(this.comboBox1.SelectedValue);
+            }
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.comboBox1.Enabled = !this.checkBox1.Checked;
+            this.checkBox3.Enabled = !this.checkBox1.Checked;
+            this.checkBox7.Enabled = !this.checkBox1.Checked;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.chart2.Series[0].Points.Clear();
+
+            idf = Convert.ToInt32(this.comboBox2.SelectedValue);
+
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+            OleDbCommand comm1;
+            DataTable dt = new DataTable();
+            int y = 2018, ny = 8;
+
+            DataColumn column;
+
+            // Create new DataColumn, set DataType, ColumnName and add to DataTable.    
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int32");
+            column.ColumnName = "Рік";
+            dt.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int32");
+            column.ColumnName = "Кількість заяв";
+            dt.Columns.Add(column);
+
+            for (int i = 0; i < 3; i++) {
+            comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+           
+                if (this.radioButton1.Checked)
+                {
+                    comm1.CommandText = "select avg(r1.num) from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r1.id_f=? and r1.year_f<? group by r1.id_f";
+                    comm1.Parameters.AddWithValue("id_f", idf);
+                    comm1.Parameters.AddWithValue("r1.year_f", y-2*i);
+                }
+                else  {
+                    comm1.CommandText = "select (avg(r1.num)+max(r1.num))/2 from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r1.id_f=? and r1.year_f<? group by r1.id_f";
+                    comm1.Parameters.AddWithValue("id_f", idf);
+                    comm1.Parameters.AddWithValue("r1.year_f", y-2*i);
+                }
+                //    }
+                //   else
+                //     {
+                //     comm1.CommandText = "select year_f, sum(num) as full_sum from for_stat group by year_f";
+                //      }
+
+            DataRow row;
+
+            row = dt.NewRow();
+            row["Рік"] = y;
+            row["Кількість заяв"] = Convert.ToInt32(comm1.ExecuteScalar());
+            dt.Rows.Add(row);
+            y++;
+            }
+
+            this.dataGridView2.DataSource = dt;
+            conn1.Close();
+
+            chart1.Series[0].IsXValueIndexed = true;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                chart2.Series[0].Points.AddXY(dt.Rows[i][0], dt.Rows[i][1]);
+            }
+
+            if (this.checkBox1.Checked)
+                chart2.Series[0].Sort(System.Windows.Forms.DataVisualization.Charting.PointSortOrder.Descending, "Y");
+             
+
+        /*    this.chart2.Series[0].Points.Clear();
+
+            idf = Convert.ToInt32(this.comboBox1.SelectedValue);
+
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+            OleDbCommand comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+            if (this.checkBox2.Checked)
+            {
+                comm1.CommandText = @"select r2.namef, sum(r1.num) as full_sum from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r2.idu=? 
+                                    group by r1.id_f, r2.namef";
+                comm1.Parameters.AddWithValue("idu", this.comboBox4.SelectedValue);
+            }
+            else if (this.checkBox4.Checked)
+            {
+                comm1.CommandText = @"select r2.nameu, r1.full_sum from (select r4.idu, sum(r3.num) as full_sum from for_for as r3 inner join 
+                                    faculties as r4 on r3.id_f=r4.id group by r4.idu) as r1 inner join universe as r2 on r1.r4.idu=r2.id ";
+            }
+            else if (this.checkBox5.Checked)
+            {
+                comm1.CommandText = @"select r1.year_f, sum(r1.num) from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r2.idu=1 group by r1.year_f ";
+                comm1.Parameters.AddWithValue("idu", this.comboBox4.SelectedValue);
+            }
+            else
+            {
+
+                comm1.CommandText = "select r1.year_f, r1.num from for_for as r1 inner join faculties as r2 on r1.id_f=r2.id where r1.id_f=?";
+                comm1.Parameters.AddWithValue("id_f", idf);
+                //    }
+                //   else
+                //     {
+                //     comm1.CommandText = "select year_f, sum(num) as full_sum from for_stat group by year_f";
+                //      }
+            }
+            OleDbDataAdapter adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            DataTable dt = new DataTable();
+            adapt1.Fill(dt);
+            this.dataGridView2.DataSource = dt;
+            conn1.Close();
+
+            chart1.Series[0].IsXValueIndexed = true;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                chart2.Series[0].Points.AddXY(dt.Rows[i][0], dt.Rows[i][1]);
+            }
+
+            if (this.checkBox1.Checked)
+                chart2.Series[0].Sort(System.Windows.Forms.DataVisualization.Charting.PointSortOrder.Descending, "Y");
+         */
+        }
+
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+          //  this.comboBox2.Enabled = !this.checkBox2.Checked;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.textBox1.Text))
+            {
+                MessageBox.Show("Необхідно ввести назву ВНЗ");
+            }
+            else
+            {
+                OleDbConnection conn1 = new OleDbConnection();
+                conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+                conn1.Open();
+
+                OleDbCommand comm1 = new OleDbCommand();
+                comm1.Connection = conn1;
+                comm1.CommandText = "insert into universe (nameu, city) values (@nameu, @city)";
+                comm1.Parameters.AddWithValue("@nameu", this.textBox1.Text);
+                comm1.Parameters.AddWithValue("@city", this.textBox2.Text);
+
+                comm1.ExecuteScalar();
+
+                MessageBox.Show("Новий ВНЗ додано");
+
+                conn1.Close();
+
+                this.uppCombo(this.comboBox3, "select * from universe", "nameu");
+                this.uppCombo(this.comboBox7, "select * from universe", "nameu");
+                this.uppCombo(this.comboBox6, "select * from universe", "nameu");
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            this.comboBox1.Enabled = false;
+            if (tabControl1.SelectedIndex == 3)
+                this.comboBox9.Enabled = false;
+
+            if (tabControl1.SelectedIndex == 2) {
+
+                this.uppCombo(this.comboBox3, "select * from universe", "nameu");
+                this.uppCombo(this.comboBox7, "select * from universe", "nameu");
+                this.uppCombo(this.comboBox6, "select * from universe", "nameu");
+
+            }
+            if (tabControl1.SelectedIndex == 1)
+                this.comboBox2.Enabled = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+
+            OleDbCommand comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+            comm1.CommandText = "delete from universe where id=@id";
+            comm1.Parameters.AddWithValue("@id", this.comboBox3.SelectedValue);
+
+            comm1.ExecuteScalar();
+
+            conn1.Close();
+
+            this.uppCombo(this.comboBox3, "select * from universe", "nameu");
+            this.uppCombo(this.comboBox7, "select * from universe", "nameu");
+            this.uppCombo(this.comboBox6, "select * from universe", "nameu");
+
+            MessageBox.Show("Дані про ВНЗ видалено");
+            
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.comboBox5.Text = "";
+            int i;
+            if (Int32.TryParse(this.comboBox6.SelectedValue.ToString(), out i))
+            {
+                this.comboBox5.Enabled = true;
+                this.uppCombo(this.comboBox5, "select * from faculties where idu=" + this.comboBox6.SelectedValue, "namef");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            bool for_null = false;
+            for (int i=0; i<8; i++) {
+                if (this.dataGridView3.Rows[i].Cells[0].Value == null || this.dataGridView3.Rows[i].Cells[1].Value == null)
+                {
+                    for_null = true;
+                }
+            }
+
+          
+            if (for_null || String.IsNullOrEmpty(this.textBox4.Text)) { 
+                MessageBox.Show("Необхідно ввести назву факультету та заповнити таблицю"); }
+            else
+            {
+
+                OleDbConnection conn1 = new OleDbConnection();
+                conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+                conn1.Open();
+
+                OleDbCommand comm1 = new OleDbCommand();
+                comm1.Connection = conn1;
+                comm1.CommandText = "insert into faculties (namef, idu) values (@namef, @idu)";
+                comm1.Parameters.AddWithValue("@namef", this.textBox4.Text);
+                comm1.Parameters.AddWithValue("@idu", this.comboBox7.SelectedValue);
+
+                comm1.ExecuteScalar();
+
+                comm1 = new OleDbCommand();
+                comm1.Connection = conn1;
+                comm1.CommandText = "select max(id) from faculties";
+                int idf = Convert.ToInt32(comm1.ExecuteScalar());
+
+                for (int i = 0; i < 8; i++)
+                {
+                    comm1 = new OleDbCommand();
+                    comm1.Connection = conn1;
+                    comm1.CommandText = "insert into for_for (id_f, year_f, num, avg_points, avg_pr) values (@id_f, @year_f, @num, @avg_points, @avg_pr)";
+                    comm1.Parameters.AddWithValue("@id_f", idf);
+                    comm1.Parameters.AddWithValue("@year_f", this.dataGridView3.Rows[i].Cells[0].Value);
+                    comm1.Parameters.AddWithValue("@num", this.dataGridView3.Rows[i].Cells[1].Value);
+                    comm1.Parameters.AddWithValue("@avg_points", this.dataGridView3.Rows[i].Cells[2].Value);
+                    comm1.Parameters.AddWithValue("@avg_pr", this.dataGridView3.Rows[i].Cells[3].Value);
+
+                    comm1.ExecuteScalar();
+                }
+
+                MessageBox.Show("Новий факультет додано");
+
+                conn1.Close();
+
+                this.uppCombo(this.comboBox5, "select * from faculties where idu=" + this.comboBox6.SelectedValue, "namef");
+            }
+            
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.comboBox1.Enabled = true;
+            int i;
+            if (Int32.TryParse(this.comboBox4.SelectedValue.ToString(), out i)) {
+            this.uppCombo(this.comboBox1, "select * from faculties where idu="+this.comboBox4.SelectedValue.ToString(), "namef");
+            }
+        }
+
+        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        {
+            
+                this.comboBox1.Enabled = !this.checkBox7.Checked;
+                this.checkBox1.Enabled = !this.checkBox7.Checked;
+                this.checkBox3.Enabled = !this.checkBox7.Checked;
+           
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            this.comboBox4.Enabled = !this.checkBox3.Checked;
+            this.comboBox1.Enabled = !this.checkBox3.Checked;
+         //   this.checkBox4.Enabled = !this.checkBox3.Enabled;
+            this.checkBox7.Enabled = !this.checkBox3.Checked;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.chart3.Series[0].Points.Clear();
+            this.chart3.Series[1].Points.Clear();
+            this.chart3.Series[2].Points.Clear();
+         //   chart3.ChartAreas[0].AxisX.Maximum = 10;
+            chart3.ChartAreas[0].AxisX.Minimum = 0;
+            chart3.ChartAreas[0].AxisY.Maximum = 1500;
+            chart3.ChartAreas[0].AxisY.Minimum = 0;
+    //        chart3.Series[0].Points.AddXY(3, 382);
+      //      chart3.Series[1].Points.AddXY(3, 475);
+       //     chart3.Series[2].Points.AddXY(1, 100);
+
+            DataColumn column;
+            DataTable dt1 = new DataTable();
+
+            // Create new DataColumn, set DataType, ColumnName and add to DataTable.    
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "Код факультета";
+            dt1.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int32");
+            column.ColumnName = "Кількість заяв";
+            dt1.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int32");
+            column.ColumnName = "Помилка_%";
+            dt1.Columns.Add(column);
+
+            idf = Convert.ToInt32(this.comboBox9.SelectedValue);
+
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+            OleDbCommand comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+           
+                comm1.CommandText = @"select id_f, num as sn from for_for where year_f=2017 and id_f=@id_f ";
+                comm1.Parameters.AddWithValue("@id_f", this.comboBox9.SelectedValue);
+                   
+            OleDbDataAdapter adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            DataTable dt = new DataTable();
+            adapt1.Fill(dt);
+
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+            //    chart3.Series[0].Points.AddXY(3, 475);
+               chart3.Series[0].Points.AddXY(Convert.ToInt32(this.comboBox9.SelectedValue), Convert.ToInt32(dt.Rows[i].ItemArray[1]));
+       
+                DataRow row;
+
+                row = dt1.NewRow();
+                row["Код факультета"] = "Факт";
+                row["Кількість заяв"] = Convert.ToInt32(dt.Rows[i].ItemArray[1]);
+                dt1.Rows.Add(row);
+            }
+
+       //     this.chart3.DataSource = dt;
+      //      this.chart3.Series[0].XValueMember = "id_f";
+      //      this.chart3.Series[0].YValueMembers = "sn";
+
+            comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+
+            comm1.CommandText = @"select id_f, avg(num) as sn from for_for where id_f=@id_f group by id_f";
+            comm1.Parameters.AddWithValue("@id_f", this.comboBox9.SelectedValue);
+
+            adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            dt = new DataTable();
+            adapt1.Fill(dt);
+
+        //    chart3.Series[1].Points.AddXY(1, 110);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+             //   chart3.Series[1].Points.AddXY(3, 382);
+                chart3.Series[1].Points.AddXY(Convert.ToInt32(this.comboBox9.SelectedValue), Convert.ToInt32(dt.Rows[i].ItemArray[1]));
+
+                DataRow row;
+
+                row = dt1.NewRow();
+                row["Код факультета"] = "ШНМ";
+                row["Кількість заяв"] = Convert.ToInt32(dt.Rows[i].ItemArray[1]);
+                row["Помилка_%"] = Math.Abs(Convert.ToInt32(dt1.Rows[0].ItemArray[1]) - Convert.ToInt32(dt.Rows[i].ItemArray[1])) * 100 / Convert.ToInt32(dt1.Rows[0].ItemArray[1]);
+                dt1.Rows.Add(row);
+            }
+
+       //     this.chart3.DataSource = dt;
+      //      this.chart3.Series[1].XValueMember = "id_f";
+       //     this.chart3.Series[1].YValueMembers = "sn";
+
+            comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+
+            comm1.CommandText = @"select id_f, avg(num) as sn from for_for where id_f=@id_f and year_f>2010 group by id_f";
+            comm1.Parameters.AddWithValue("@id_f", this.comboBox9.SelectedValue);
+
+            adapt1 = new OleDbDataAdapter();
+            adapt1.SelectCommand = comm1;
+            dt = new DataTable();
+            adapt1.Fill(dt);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+               chart3.Series[2].Points.AddXY(dt.Rows[i].ItemArray[0], dt.Rows[i].ItemArray[1]);
+                DataRow row;
+
+                row = dt1.NewRow();
+                row["Код факультета"] = "МГУА";
+                row["Кількість заяв"] = Convert.ToInt32(dt.Rows[i].ItemArray[1]);
+                row["Помилка_%"] = Math.Abs(Convert.ToInt32(dt1.Rows[0].ItemArray[1]) - Convert.ToInt32(Convert.ToInt32(dt.Rows[i].ItemArray[1]))) * 100 / Convert.ToInt32(dt1.Rows[0].ItemArray[1]);
+                dt1.Rows.Add(row);
+            }
+
+            this.dataGridView4.DataSource = dt1;
+
+   //         this.chart3.DataSource = dt;
+	//	this.chart3.Series[2].XValueMember = "id_f";
+	//	this.chart3.Series[2].YValueMembers = "sn";
+	//	this.chartArea1.AxisX->Title = L"Специалист";
+	//	this->chartArea1->AxisY->Title = L"Пациенты";
+//		this.chart3.DataBind();
+	//	this->chart1->Legends->Clear();
+
+            conn1.Close();
+        }
+
+        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i;
+            this.comboBox2.Enabled = true;
+            if (Int32.TryParse(this.comboBox8.SelectedValue.ToString(), out i))
+            {
+                this.uppCombo(this.comboBox2, "select * from faculties where idu=" + this.comboBox8.SelectedValue.ToString(), "namef");
+            }
+        }
+
+        private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+                this.comboBox9.Enabled = true;
+            int i;
+            if (Int32.TryParse(this.comboBox10.SelectedValue.ToString(), out i))
+            {
+                this.uppCombo(this.comboBox9, "select * from faculties where idu=" + this.comboBox10.SelectedValue.ToString(), "namef");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            OleDbConnection conn1 = new OleDbConnection();
+            conn1.ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =|DataDirectory|\forecact_stud.accdb";
+            conn1.Open();
+
+            OleDbCommand comm1 = new OleDbCommand();
+            comm1.Connection = conn1;
+            comm1.CommandText = "delete from faculties where id=@id";
+            comm1.Parameters.AddWithValue("@id", this.comboBox5.SelectedValue);
+
+            comm1.ExecuteScalar();
+
+            conn1.Close();
+
+            this.uppCombo(this.comboBox5, "select * from faculties", "namef");
+
+            MessageBox.Show("Дані про факультет видалено");
+        }
+
+        private void chart3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        double ekstrapolyaciya(double[][] a, double[] b, double[] x, double[] y, int N)
+  {    double [][]ae; double[][] be;
+  for (int i=0; i<3; i++)
+   {for (int j=0; j<3; j++)
+    a[i][j]=0;
+    b[i]=0;
+    }
+   for (int i=0; i<N; i++)
+        {a[0][0]=a[0][0]+x[i]*x[i]*x[i]*x[i];  //Sx^4
+        a[0][1]=a[0][1]+x[i]*x[i]*x[i];        //Sx^3
+        a[0][2]=a[0][2]+x[i]*x[i];             //Sx^2
+        a[1][2]=a[1][2]+x[i];                  //Sx
+        b[0]=b[0]+y[i]*x[i]*x[i];              //Syx^2
+        b[1]=b[1]+y[i]*x[i];                   //Syx
+        b[2]=b[2]+y[i];                        //Sy
+        }
+       a[1][0]=a[0][1];
+       a[1][1]=a[0][2];
+       a[2][0]=a[0][2];
+       a[2][1]=a[1][2];
+     a[2][2]=N;
+
+     return 0; 
+
+  }
+
+        void gauss(double[][] a, double[] b, double[] h, int nn)
+        {
+            double fg, aij;
+            for (int i = 0; i < nn - 1; i++)
+                for (int j = i + 1; j < nn; j++)
+                {
+                    aij = -a[j][i] / a[i][i];
+                    for (int k = i + 1; k < nn; k++)
+                        a[j][k] = a[j][k] + aij * a[i][k];
+                    b[j] = b[j] + aij * b[i];  //ZAVERSHENIE PRYAMOGO HODA
+                }
+            h[nn - 1] = b[nn - 1] / a[nn - 1][nn - 1];
+            //double fg;
+            for (int i = nn - 2; i >= 0; i--)
+            {
+                fg = b[i];
+                for (int j = i + 1; j < nn; j++)
+                    fg = fg - h[j] * a[i][j];
+                h[i] = fg / a[i][i];  // ZAVERSHENIE OBRATNOGO HODA
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
+            ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+            for (int i = 0; i < this.dataGridView1.ColumnCount; i++)
+            {
+                ExcelApp.Cells[1, i + 1] = this.dataGridView1.Columns[i].HeaderText;
+            }
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                {
+                    ExcelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value;
+                }
+            }
+
+            ExcelApp.Visible = true;
+            ExcelApp.UserControl = true;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
+            ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+            for (int i = 0; i < this.dataGridView2.ColumnCount; i++)
+            {
+                ExcelApp.Cells[1, i + 1] = this.dataGridView2.Columns[i].HeaderText;
+            }
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView2.ColumnCount; j++)
+                {
+                    ExcelApp.Cells[i + 2, j + 1] = dataGridView2.Rows[i].Cells[j].Value;
+                }
+            }
+
+            ExcelApp.Visible = true;
+            ExcelApp.UserControl = true;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
+            ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+            for (int i = 0; i < this.dataGridView4.ColumnCount; i++)
+            {
+                ExcelApp.Cells[1, i + 1] = this.dataGridView4.Columns[i].HeaderText;
+            }
+            for (int i = 0; i < dataGridView4.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView4.ColumnCount; j++)
+                {
+                    ExcelApp.Cells[i + 2, j + 1] = dataGridView4.Rows[i].Cells[j].Value;
+                }
+            }
+
+            ExcelApp.Visible = true;
+            ExcelApp.UserControl = true;
+        }
+    }
+}
